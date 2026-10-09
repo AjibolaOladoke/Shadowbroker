@@ -1,0 +1,15 @@
+{
+  "name": "@shadowbroker/desktop-shell",
+  "version": "0.9.84",
+  "private": true,
+  "description": "ShadowBroker desktop shell packaging, runtime bridge, and release tooling",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test:backend-runtime": "node --test ./tauri-skeleton/scripts/build-backend-runtime.test.cjs",
+    "build:desktop": "npm run test:backend-runtime && node ./scripts/run-desktop-build.cjs",
+    "build:desktop:clean": "npm run test:backend-runtime && node ./scripts/run-desktop-build.cjs --clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
