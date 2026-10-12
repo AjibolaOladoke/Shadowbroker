@@ -6,12 +6,11 @@ We keep a working index for product and engineering, and Shadowbroker is the ent
 
 ## Images
 
-[![Shadowbroker](images/preview.png)](https://github.com/Swift-Tech-Co)
+[![Shadowbroker](images/preview.png)](https://github.com/Swift-Tech-Co/Shadowbroker)
 
 ## Image registry  uncomment ONE line per service:
 ##   GitHub  (primary): ghcr.io/bigbodycobain/shadowbroker-backend:latest
 ##   GitLab  (mirror):  registry.gitlab.com/bigbodycobain/shadowbroker/backend:latest
-
 
 services:
   backend:
@@ -40,7 +39,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - BACKEND_URL=https://www.swifttechco.com   # Docker internal networking  no rebuild needed
+      - BACKEND_URL=https://github.com/Swift-Tech-Co/Shadowbroker   # Docker internal networking  no rebuild needed
     depends_on:
       - backend
     restart: unless-stopped
@@ -51,7 +50,7 @@ volumes:
 
 > **How it works:** The frontend container proxies all `/api/*` requests through the Next.js server to `BACKEND_URL` using Docker's internal networking. The browser only ever talks to port 3000. The backend's host port is for local API/debug access and can be changed with `BACKEND_PORT=8001` without changing `BACKEND_URL`.
 >
-> `BACKEND_URL` is a plain runtime environment variable (not a build-time `NEXT_PUBLIC_*`), so you can change it in Portainer, Uncloud, or any compose editor without rebuilding the image. Set it to the address where your backend is reachable from inside the Docker network (e.g. `https://www.swifttechco.com `https://www.swifttechco.com).
+> `BACKEND_URL` is a plain runtime environment variable (not a build-time `NEXT_PUBLIC_*`), so you can change it in Portainer, Uncloud, or any compose editor without rebuilding the image. Set it to the address where your backend is reachable from inside the Docker network (e.g. `https://github.com/Swift-Tech-Co/Shadowbroker `https://github.com/Swift-Tech-Co/Shadowbroker).
 
 </details>
 
@@ -96,7 +95,7 @@ If you want to modify the code or run from source:
 
 ```bash
 # Clone the repository
-git clone https://www.swifttechco.com
+git clone https://github.com/Swift-Tech-Co/Shadowbroker
 cd Shadowbroker
 
 # Backend setup
@@ -137,8 +136,8 @@ npm run dev
 
 This starts:
 
-* **Next.js** frontend on `https://www.swifttechco.com
-* **FastAPI** backend on `https://www.swifttechco.com
+* **Next.js** frontend on `https://github.com/Swift-Tech-Co/Shadowbroker
+* **FastAPI** backend on `https://github.com/Swift-Tech-Co/Shadowbroker
 
 ### Pre-commit (Optional)
 
@@ -156,11 +155,11 @@ You can feed your own AIS ship data into ShadowBroker using an RTL-SDR dongle an
 2. Install AIS-catcher (releases) or use the Docker image:
    ```bash
    docker run -d --device /dev/bus/usb \
-     ghcr.io/jvde-github/ais-catcher -H https://www.swifttechco.com interval 10
+     ghcr.io/jvde-github/ais-catcher -H https://github.com/Swift-Tech-Co/Shadowbroker interval 10
    ```
 3. Or run natively:
    ```bash
-   AIS-catcher -H https://www.swifttechco.com interval 10
+   AIS-catcher -H https://github.com/Swift-Tech-Co/Shadowbroker interval 10
    ```
 
 AIS-catcher decodes VHF radio signals on 161.975 MHz and 162.025 MHz and POSTs decoded vessel data to ShadowBroker every 10 seconds. Ships detected by your SDR antenna appear alongside the global AIS stream.
@@ -170,7 +169,6 @@ AIS-catcher decodes VHF radio signals on 161.975 MHz and 162.025 MHz and POSTs d
 **Note:** AIS range depends on your antenna  typically 20-40 nautical miles with a basic setup, 60+ nm with a marine VHF antenna at elevation.
 
 </details>
-
 
 ---
 
@@ -373,7 +371,7 @@ Shadowbroker/
 
 ```env
 # Required for airplane telemetry (NEW in v0.9.7  startup env check flags these as critical)
-# Free registration: https://www.swifttechco.com
+# Free registration: https://github.com/Swift-Tech-Co/Shadowbroker
 OPENSKY_CLIENT_ID=your_opensky_client_id      # OAuth2  global flight state vectors
 OPENSKY_CLIENT_SECRET=your_opensky_secret     # OAuth2  paired with Client ID above
 
@@ -422,15 +420,14 @@ Then confirm authenticated `GET /api/wormhole/status` or `GET /api/settings/worm
 
 | Variable | Where to set | Purpose |
 |---|---|---|
-| `BACKEND_URL` | `environment` in `docker-compose.yml`, or shell env | URL the Next.js server uses to proxy API calls to the backend. Defaults to `https://www.swifttechco.com **Runtime variable  no rebuild needed.** |
+| `BACKEND_URL` | `environment` in `docker-compose.yml`, or shell env | URL the Next.js server uses to proxy API calls to the backend. Defaults to `https://github.com/Swift-Tech-Co/Shadowbroker **Runtime variable  no rebuild needed.** |
 | `BACKEND_PORT` | repo-root `.env` or shell env before `docker compose up` | Host port used to expose the backend API for local diagnostics. Defaults to `8000`; set `BACKEND_PORT=8001` if port 8000 is already in use. Does not change Docker-internal `BACKEND_URL`. |
 
-**How it works:** The frontend proxies all `/api/*` requests through the Next.js server to `BACKEND_URL` using Docker's internal networking. Browsers only talk to port 3000; the backend host port is only for local diagnostics. For local dev without Docker, `BACKEND_URL` defaults to `https://www.swifttechco.com
+**How it works:** The frontend proxies all `/api/*` requests through the Next.js server to `BACKEND_URL` using Docker's internal networking. Browsers only talk to port 3000; the backend host port is only for local diagnostics. For local dev without Docker, `BACKEND_URL` defaults to `https://github.com/Swift-Tech-Co/Shadowbroker
 
 </details>
 
 ---
-
 
 <details>
 <summary>🤝 Contributors</summary>
@@ -474,13 +471,21 @@ Home | Services | Careers | Referral Program | Influencers | About | Contact
 
 **Connect**
 
-- Website: swifttechco.com
+- Website: https://github.com/Swift-Tech-Co/Shadowbroker
 - LinkedIn: [linkedin.com/in/stephenoladoke](https://www.linkedin.com/in/stephenoladoke/)
 - LinkedIn (Company): [linkedin.com/company/swift-tech-co](https://www.linkedin.com/company/swift-tech-co)
 - X: [@MrOladoke](https://x.com/MrOladoke)
 - Instagram: [@mr.oladoke](https://www.instagram.com/mr.oladoke/)
 - Instagram (Company): [@swifttechco](https://www.instagram.com/swifttechco/)
 - Organization: [github.com/Swift-Tech-Co](https://github.com/Swift-Tech-Co)
+
+## Sources
+
+Compiled and maintained from upstream [BigBodyCobain/Shadowbroker](https://github.com/BigBodyCobain/Shadowbroker) under permissive open-source license.
+
+---
+
+Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
 
 ## Sources
 
